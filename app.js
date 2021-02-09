@@ -3,6 +3,9 @@ const exphbs = require('express-handlebars')
 const path = require('path')
 
 
+// Import routes
+const gigs = require('./routes/gigsRoutes')
+
 // Database
 const db = require('./config/database')
 
@@ -35,6 +38,10 @@ app.use(express.json())
 app.get('/api', (req, res) => {
     res.send('API IS RUNNING')
 })
+
+
+// Gig routes
+app.use('/gigs', gigs)
 
 const PORT = process.env.PORT || 5000
 
