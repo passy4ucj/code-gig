@@ -34,6 +34,12 @@ const app = express()
 // JSON BODY PARSER
 app.use(express.json())
 
+// Handle bars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
+//Set static folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/api', (req, res) => {
     res.send('API IS RUNNING')

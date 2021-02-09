@@ -9,20 +9,25 @@ const router = express.Router()
 router.get('/', async(req, res) => {
     try {
         const gigs = await Gig.findAll()
-        console.log(gigs)
-        res.status(200).json({
-            success: true,
-            data: gigs
+        // res.status(200).json(gigs)
+        // console.log(gigs)
+        res.render('gigs', {
+           gigs
         })
+        
+        
     } catch (error) {
         console.log('Error :', error)
     }
    
 })
 
+// Display add gig form
+router.get('/add', (req, res) => res.render('add'))
+
 
 // Add a Gig
-router.get('/add', async(req, res) => {
+router.post('/add', async(req, res) => {
     const data = {
         title: 'SImple Wordpress developer',
         technologies: 'wordpress',
